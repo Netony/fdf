@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:23:55 by dajeon            #+#    #+#             */
-/*   Updated: 2023/05/30 22:55:04 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/05/31 20:01:07 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ t_vec	*vec_sub(t_vec *a, t_vec *b)
 	return (sub);
 }
 
+t_vec	*vec_del(t_vec *a)
+{
+	free(a);
+	return (NULL);
+}
+/*
 t_vec	*vec_rotate(t_vec *a, int x, int y, int z)
 {
 	t_vec	*rotate;
@@ -51,3 +57,4 @@ t_vec	*vec_rotate(t_vec *a, int x, int y, int z)
 
 	return (rotate);	
 }
+*/
