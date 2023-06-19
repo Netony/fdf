@@ -23,6 +23,14 @@ typedef struct	s_vec
 	int	y;
 }	t_vec;
 
+typedef struct	s_cood
+{
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_cood;
+
 void	ft_line_put(void *mlx_ptr, void *win_ptr, t_vec *a, t_vec *b, int color);
 
 int		ft_rgb_to_color(int t, int r, int g, int b);

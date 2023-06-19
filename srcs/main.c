@@ -11,8 +11,43 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-int	main(void)
+int	main(int argc, char **argv)
+{
+	int		fd;
+	t_cood	***cood;
+
+	fd = fdf_check_arg(argc, argv);
+	if (fd < 0)
+		return (1);
+	cood = fdf_check_file(fd);
+	if (cood == NULL)
+		return (1);
+	
+	return (0);
+}
+
+int	fdf_check(int argc, char **argv)
+{
+	int	fd;
+
+	if (argc != 2)
+	{
+		ft_perror_arg("fdf", argc - 1, 1);
+		return (-1);
+	}
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		perror("fdf");
+		return (-1);
+	}
+	return (fd);
+}
+
+int	ft_test(void)
 {
 	void	*mlx;
 	void	*win;
