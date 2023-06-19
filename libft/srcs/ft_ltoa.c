@@ -6,34 +6,57 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:42:05 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/18 21:01:31 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:53:32 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+static void	ltoa_number(char *ltoa, int i, unsigned long n, char *base);
+static int	ltoa_get_digit(unsigned long n, char *base);
+
 char	*ft_ltoa(long n, char *base, int issigned)
 {
-	if (issigned)
-}
+	char			*ltoa;
+	int				i;
+	int				digit;
+	unsigned long	un;
 
-char	*ltoa_number(unsigned long n, char *base)
-{
-	char	*ltoa;
-	int		digit;
-	int		radix;
-	int		i;
-
-	digit = ltoa_digit(n);
 	i = 0;
-	while (digit--)
+	if (issigned && n < 0)
 	{
-		ltoa[i++] = n % radix;
-		n /= radix;
+		i = 1;
+		un = (unsigned long)(-n);
 	}
-	ltoa[i] = '\0';
+	else
+		un = n;
+	digit = ltoa_get_digit(un, base);
+	ltoa = (char *)malloc(sizeof(char) * (digit + i + 1));
+	if (i == 1)
+		ltoa[0] = '-';
+	ltoa_number(ltoa, i, un, base);
 	return (ltoa);
 }
 
-char	*ltoa_digit(unsigned long n, char *base)
+static void	ltoa_number(char *ltoa, int minus, unsigned long n, char *base)
+{
+	int	digit;
+	int	radix;
+	int	i;
+
+	radix = ft_strlen(base);
+	digit = ltoa_get_digit(n, base);
+	ltoa[digit + minus] = '\0';
+	i = 0;
+	while (i < digit)
+	{
+		ltoa[-i + (digit + minus - 1)] = base[n % radix];
+		n /= radix;
+		i++;
+	}
+}
+
+static int	ltoa_get_digit(unsigned long n, char *base)
 {
 	int radix;
 	int	digit;

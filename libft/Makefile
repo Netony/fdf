@@ -4,7 +4,8 @@ SRCS_DIR = srcs
 OBJS_DIR = objs
 INCS_DIR = incs
 
-SOURCES = \
+SOURCES = ft_ltoa.c \
+		  \
 		  ft_iseq.c ft_iseqlen.c ft_iseqmv.c \
 		  ft_isin.c ft_isinlen.c ft_isinmv.c \
 		  \

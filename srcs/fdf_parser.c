@@ -44,20 +44,3 @@ int	fdf_parse(int fd)
 		return (NULL);
 	return (0);
 }
-
-int	getsize_col(char *buf)
-{
-	int		size;
-	char	*cur;
-	int		tok_len;
-
-	cur = buf;
-	size = 0;
-	while (*buf)
-	{
-		tok_len = ft_isnin_len(cur, "0123456789", 0);
-		if (tok_len > 0)
-
-		ft_isnin_len(cur, " ", 0)
-	}
-}

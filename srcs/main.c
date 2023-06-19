@@ -6,13 +6,62 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 19:19:27 by dajeon            #+#    #+#             */
-/*   Updated: 2023/05/30 22:31:04 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/19 21:05:00 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
 #include <stdio.h>
+
+int	main(void)
+{
+	int a[8] = {0, 1, 2, 3, 4, 5, 6, 7};
+	int	**test1;
+	int	**test2;
+	int	**test3;
+	int	a_size[2] = {2, 4};
+	int	b_size[2] = {4, 2};
+
+	test1 = matrix_new(a, 2, 4);
+	test2 = matrix_new(a, 4, 2);
+	print_matrix(test1, 2, 4);
+	print_matrix(test2, 4, 2);
+	test3 = matrix_times(test1, test2, a_size, b_size);
+	print_matrix(test3, 2, 2);
+	return (0);
+}
+
+void	test(int *pa)
+{
+	int	i;
+	
+	i = 0;
+	while (i < 9)
+	{
+		printf("pa[%d]: %d\n", i, pa[i]);
+		i++;
+	}
+}
+
+void	test_pb(int **pb, int x, int y)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < x)
+	{
+		j = 0;
+		while (j < y)
+		{
+			printf("pb[%d][%d]: %d\n", i, j, pb[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+/*
 
 int	main(int argc, char **argv)
 {
@@ -64,3 +113,4 @@ int	ft_test(void)
 	mlx_loop(mlx);
 	return (0);
 }
+*/

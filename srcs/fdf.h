@@ -6,12 +6,13 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:47 by dajeon            #+#    #+#             */
-/*   Updated: 2023/05/31 20:06:18 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/19 21:05:02 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
+# include "../libft/incs/libft.h"
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -42,4 +43,9 @@ t_vec	*vec_sub(t_vec *a, t_vec *b);
 t_vec	*vec_rotate(t_vec *a, int x, int y, int z);
 
 int		ft_abs(int a);
+int		**matrix_times(int **a, int **b, int a_size[2], int b_size[2]);
+int		**matrix_new(int *a, int x_size, int y_size);
+void	matrix_del(int *a, int x_size);
+int		print_matrix(int **a, int x_size, int y_size);
+
 #endif

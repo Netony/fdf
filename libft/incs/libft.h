@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 21:04:32 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/18 21:04:33 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:54:03 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,17 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(char const *s1);
 
+char	*ft_itoa(int n);
+char	*ft_ltoa(long n, char *base, int issigned);
+
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
-char	*ft_itoa(int n);
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
 size_t	ft_putchar_fd(char c, int fd);
 size_t	ft_putnbr_fd(int n, int fd);
 size_t	ft_putstr_fd(char *s, int fd);

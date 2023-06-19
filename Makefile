@@ -6,50 +6,44 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/05/30 22:32:27 by dajeon           ###   ########.fr        #
+#    Updated: 2023/06/19 20:33:11 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = a.out
-SOURCES = main.c fdf_utils.c fdf_math.c fdf_vector.c fdf_mlx.c
-SOURCES_BONUS = 
+NAME = fdf
+
+SOURCES = fdf_math.c #fdf_mlx.c fdf_utils.c fdf_vector.c fdf_parser.c
+SOURCES_MANDA = main.c
+SOURCES_BONUS =
+			   
+INCLUDES = fdf.h
 
 LIBFT = libft.a
-LIBFTPRINTF = libftprintf.a
-LIBGNL = libgnl.a
-
-LIB = ft
-LIB2 = ftprintf
-LIB3 = gnl
-
-LIB_DIR = libft
-LIB_DIR2 = ft_printf
-LIB_DIR3 = get_next_line
+LIB = ft 
 
 # **************************************************************************** #
 
-SRCS = $(SOURCES)
-OBJS = $(SOURCES:.c=.o)
-LDLIBS = -l $(LIB) $(LIB2) $(LIB3)
+LIB_DIR = libft
+SRC_DIR = srcs
+OBJ_DIR = objs
+INC_DIR = srcs
+
+SRCS := $(addprefix $(SRC_DIR)/, $(SOURCES))
+SRCS_MANDA := $(addprefix $(SRC_DIR)/, $(SOURCES_MANDA))
+SRCS_BONUS := $(addprefix $(SRC_DIR)/, $(SOURCES_BONUS))
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
+OBJS_MANDA = $(addprefix $(OBJ_DIR)/, $(SOURCES_MANDA:.c=.o))
+OBJS_BONUS = $(addprefix $(OBJ_DIR)/, $(SOURCES_BONUS:.c=.o))
+
+INCS := $(addprefix $(INC_DIR)/, $(INCLUDES))
+LIBFT := $(addprefix $(LIB_DIR)/, $(LIBFT))
 
 ifdef WITH_BONUS
-	SRC_DIR = srcs_bonus
-	OBJ_DIR = objs_bonus
-	SRCS = $(SOURCES_BONUS)
-	OBJS = $(SOURCES_BONUS:.c=.o)
+	OBJS_NEW = $(OBJS_BONUS) $(OBJS) 
 else
-	SRC_DIR = srcs
-	OBJ_DIR = objs
-	SRCS = $(SOURCES)
-	OBJS = $(SOURCES:.c=.o)
+	OBJS_NEW = $(OBJS_MANDA) $(OBJS) 
 endif
-
-SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
-OBJS := $(addprefix $(OBJ_DIR)/, $(OBJS))
-INCS := $(addprefix $(SRC_DIR)/, $(INCS))
-LIBFT := $(addprefix $(LIB_DIR)/, $(LIBFT))
-LIBFTPRINTF := $(addprefix $(LIB_DIR2)/, $(LIBFTPRINTF))
-LIBGNL := $(addprefix $(LIB_DIR3)/, $(LIBGNL))
 
 # **************************************************************************** #
 
@@ -62,20 +56,18 @@ CFLAGS = -Wall -Wextra -Werror
 ARFLAGS = crus
 RMFLAGS = -rf
 
-LDFLAGS = -L $(LIB_DIR) $(LIB_DIR2)
-LIBMLXFLAGS = -lmlx -framework OpenGl -framework AppKit -lmlx
-LIBMATHFLAGS = -lm
-LIBFTFLAGS = -L $(LIB_DIR) -L $(LIB_DIR2) -L $(LIB_DIR3) -l $(LIB) -l $(LIB2) -l $(LIB3)
-
 # Commands ******************************************************************* #
 
-all : $(NAME)
+all : 
+	$(RM) $(RMFLAGS) $(OBJS_BONUS)
+	$(MAKE) $(NAME) 
 
-bonus :
-	make WITH_BONUS=1 $(NAME)
+bonus : 
+	$(RM) $(RMFLAGS) $(OBJS_MANDA)
+	$(MAKE) $(NAME) WITH_BONUS=1
 
 clean :
-	$(RM) $(RMFLAGS) objs objs_bonus */*.a */*.o */*/*.o
+	$(RM) $(RMFLAGS) objs */*.a */*.o */*/*.o
 
 fclean : 
 	$(MAKE) clean
@@ -85,27 +77,19 @@ re :
 	$(MAKE) fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
 
 # Dependency ***************************************************************** #
 
-$(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF) $(LIBGNL)
-	$(CC) $(CFLAGS) $(OBJS) -I $(SRC_DIR) -o $(NAME) $(LIBFTFLAGS) $(LIBMLXFLAGS) $(LIBMATHFLAGS)
+$(NAME) : $(OBJS_NEW) $(LIBFT) $(LIBFTPRINTF) $(LIBGNL)
+	$(CC) $(CFLAGS) $(OBJS_NEW) -I $(INC_DIR) -o $(NAME) -L $(LIB_DIR) -l $(LIB)
 
 $(LIBFT): 
 	$(MAKE) -j3 -C $(LIB_DIR) all
-
-$(LIBFTPRINTF): 
-	$(MAKE) -j3 -C $(LIB_DIR2) all
-
-$(LIBGNL): 
-	$(MAKE) -j3 -C $(LIB_DIR3) all
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $< -c -I $(SRC_DIR) -o $@
 
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
-
-# **************************************************************************** #
 
