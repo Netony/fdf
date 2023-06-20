@@ -44,3 +44,5 @@ int	fdf_parse(int fd)
 		return (NULL);
 	return (0);
 }
+
+t_cood	***lstconv

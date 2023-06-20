@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:28:38 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/19 21:04:16 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/20 22:18:04 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,3 +94,18 @@ int	print_matrix(int **a, int x_size, int y_size)
 	return (0);
 }
 
+int	iofn(int a, int b, int i, int n)
+{
+	int	x;
+
+	x = a + (b - a) * (i / n);
+	return (x);
+}
+
+int	get_larger(int x, int y)
+{
+	if (abs(x) >= abs(y))
+		return (x);
+	else
+		return (y);
+}

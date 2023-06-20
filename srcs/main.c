@@ -6,14 +6,12 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 19:19:27 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/19 21:05:00 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/20 22:18:00 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <fcntl.h>
-#include <stdio.h>
-
+/*
 int	main(void)
 {
 	int a[8] = {0, 1, 2, 3, 4, 5, 6, 7};
@@ -44,40 +42,6 @@ void	test(int *pa)
 	}
 }
 
-void	test_pb(int **pb, int x, int y)
-{
-	int	i;
-	int	j;
-	
-	i = 0;
-	while (i < x)
-	{
-		j = 0;
-		while (j < y)
-		{
-			printf("pb[%d][%d]: %d\n", i, j, pb[i][j]);
-			j++;
-		}
-		i++;
-	}
-}
-/*
-
-int	main(int argc, char **argv)
-{
-	int		fd;
-	t_cood	***cood;
-
-	fd = fdf_check_arg(argc, argv);
-	if (fd < 0)
-		return (1);
-	cood = fdf_check_file(fd);
-	if (cood == NULL)
-		return (1);
-	
-	return (0);
-}
-
 int	fdf_check(int argc, char **argv)
 {
 	int	fd;
@@ -96,21 +60,77 @@ int	fdf_check(int argc, char **argv)
 	return (fd);
 }
 
-int	ft_test(void)
-{
-	void	*mlx;
-	void	*win;
-	t_vec	*a;
-	t_vec	*b;
-	int		i;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 1000, 1000, "TEST");
+void	test_pb(int **pb, int x, int y)
+{
+	int	i;
+	int	j;
+	
 	i = 0;
-	a = vec_init(100, 350);
-	b = vec_init(900, 950);
-	ft_line_put(mlx, win, a, b, ft_rgb_to_color(0, 0, 255, 0));
-	mlx_loop(mlx);
+	while (i < x)
+	{
+		j = 0;
+		while (j < y)
+		{
+			printf("pb[%d][%d]: %d\n", i, j, pb[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	int		fd;
+	t_cood	***cood;
+
+	fd = fdf_check_arg(argc, argv);
+	if (fd < 0)
+		return (1);
+	cood = fdf_check_file(fd);
+	if (cood == NULL)
+		return (1);
+	
 	return (0);
 }
 */
+
+int	main(void)
+{
+	void	*mlx;
+	void	*win;
+	t_cood	a[20][30];
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < 20)
+	{
+		j = 0;
+		while (j < 30)
+		{
+			a[i][j].x = 15 * i;
+			a[i][j].y = 25 * j;
+			a[i][j].z = 0;;
+			a[i][j].c = color_iofn(0x00FF0000, 0x0000FFFF, i * 30 + j , 600);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 1000, 1000, "TEST");
+	while (i < 20)
+	{
+		j = 0;
+		while (j < 30)
+		{
+			put_cood(mlx, win, &a[i][j]);
+			j++;
+		}
+		i++;
+	}
+	// put_line(mlx, win, &a, &b);
+	mlx_loop(mlx);
+	return (0);
+}

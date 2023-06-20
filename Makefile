@@ -6,13 +6,13 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/06/19 20:33:11 by dajeon           ###   ########.fr        #
+#    Updated: 2023/06/20 21:27:16 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SOURCES = fdf_math.c #fdf_mlx.c fdf_utils.c fdf_vector.c fdf_parser.c
+SOURCES = fdf_mlx.c fdf_math.c fdf_utils.c fdf_vector.c fdf_coordinate.c# fdf_parser.c
 SOURCES_MANDA = main.c
 SOURCES_BONUS =
 			   
@@ -53,6 +53,7 @@ AR = ar
 RM = rm
 
 CFLAGS = -Wall -Wextra -Werror
+LIBFLAGS = -lmlx -framework OpenGl -framework AppKit -l$(LIB) -L$(LIB_DIR) 
 ARFLAGS = crus
 RMFLAGS = -rf
 
@@ -82,7 +83,7 @@ re :
 # Dependency ***************************************************************** #
 
 $(NAME) : $(OBJS_NEW) $(LIBFT) $(LIBFTPRINTF) $(LIBGNL)
-	$(CC) $(CFLAGS) $(OBJS_NEW) -I $(INC_DIR) -o $(NAME) -L $(LIB_DIR) -l $(LIB)
+	$(CC) $(CFLAGS) $(OBJS_NEW) -I $(INC_DIR) -o $(NAME) $(LIBFLAGS)
 
 $(LIBFT): 
 	$(MAKE) -j3 -C $(LIB_DIR) all
