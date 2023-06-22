@@ -12,15 +12,6 @@
 
 #include "fdf.h"
 
-t_cood	*cood_iofn(t_cood *dst, t_cood *a, t_cood *b, int i, int n)
-{
-	dst->x = iofn(a->x, b->x, i, n);
-	dst->y = iofn(a->y, b->y, i, n);
-	dst->z = iofn(a->z, b->z, i, n);
-	dst->c = color_iofn(a->c, b->c, i, n);
-	return (dst);
-}
-
 t_cood	*cood_new(int x, int y, int z, int c)
 {
 	t_cood	*new;
@@ -33,6 +24,15 @@ t_cood	*cood_new(int x, int y, int z, int c)
 	new->z = z;
 	new->c = c;
 	return (new);
+}
+
+t_cood	*cood_iofn(t_cood *dst, t_cood *a, t_cood *b, int i, int n)
+{
+	dst->x = iofn(a->x, b->x, i, n);
+	dst->y = iofn(a->y, b->y, i, n);
+	dst->z = iofn(a->z, b->z, i, n);
+	dst->c = color_iofn(a->c, b->c, i, n);
+	return (dst);
 }
 
 int	**cood_to_matrix(t_cood *cood)

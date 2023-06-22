@@ -99,10 +99,33 @@ int	main(void)
 {
 	void	*mlx;
 	void	*win;
-	t_cood	a[20][30];
+	t_cood	***matrix;
 	int		i;
 	int		j;
 
+	a = (t_cood ***)malloc(sizeof(t_cood **) * m);
+	if (a == NULL)
+		return (NULL);
+	i = 0;
+	while (i < m)
+	{
+		j = 0;
+		a[i] = (t_cood **)mallo(sizeof(t_cood *) * n);
+		if (a[i] == NULL)
+		{
+			ft_tp_free(a, i, j)
+			ft_null_stop;
+		}
+		while (j < n)
+		{
+			a[i][j] = cood_new();
+			if (a[i][j] == NULL)
+				ft_null_stop;
+			j++;
+		}
+		i++;
+	}
+	
 	i = 0;
 	while (i < 20)
 	{
