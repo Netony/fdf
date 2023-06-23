@@ -40,32 +40,10 @@ int	**cood_to_matrix(t_cood *cood)
 	int	**matrix;
 
 	matrix = (int **)malloc(sizeof(int *) * 1);
+	if (matrix == NULL)
+		return (NULL);
 	(*matrix)[0] = cood->x;
 	(*matrix)[1] = cood->y;
 	(*matrix)[2] = cood->z;
 	return (matrix);
 }
-
-void	put_cood(void *mlx_ptr, void *win_ptr, t_cood *cood)
-{
-	mlx_pixel_put(mlx_ptr, win_ptr, cood->x, cood->y, cood->c);
-}
-
-void	put_line(void *mlx_ptr, void *win_ptr, t_cood *a, t_cood *b)
-{
-	int		i;
-	int		n;
-	t_cood	*cur;
-
-	cur = (t_cood *)malloc(sizeof(t_cood));
-	n = get_larger(a->x - b->x, a->y - b->y);
-	i = 0;
-	while (i < n)
-	{
-		cur = cood_iofn(cur, a, b, i, n);
-		put_cood(mlx_ptr, win_ptr, cur);
-		i++;
-	}
-	free(cur);
-}
-

@@ -12,23 +12,70 @@
 
 #include "fdf.h"
 
-void	ft_line_put(void *mlx_ptr, void *win_ptr, t_vec *a, t_vec *b, int color)
-{
-	int	x;
-	int	y;
-	int	t;
-	int	size;
+static void	fdf_line_row(t_cood ***set, int m, int n);
+static void	fdf_line_col(t_cood ***set, int m, int n);
 
-	if (ft_abs(a->x - b->x) > ft_abs(a->y - b->y))
-		size = ft_abs(a->x - b->x);
-	else
-		size = ft_abs(a->y - b->y);
-	t = 0;
-	while (t < size)
+void	put_cood(void *mlx_ptr, void *win_ptr, t_cood *cood)
+{
+	mlx_pixel_put(mlx_ptr, win_ptr, cood->x, cood->y, cood->c);
+}
+
+void	put_line(void *mlx_ptr, void *win_ptr, t_cood *a, t_cood *b)
+{
+	int		i;
+	int		n;
+	t_cood	*cur;
+
+	cur = (t_cood *)malloc(sizeof(t_cood));
+	n = get_larger(a->x - b->x, a->y - b->y);
+	i = 0;
+	while (i < n)
 	{
-		x = a->x + (b->x - a->x) * t / size;
-		y = a->y + (b->y - a->y) * t / size;
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-		t++;
+		cur = cood_iofn(cur, a, b, i, n);
+		put_cood(mlx_ptr, win_ptr, cur);
+		i++;
+	}
+	free(cur);
+}
+
+int	fdf_putmap(t_cood ***set, int m, int n)
+{
+	fdf_line_col(set, m, n);
+	fdf_line_row(set, m, n);
+}
+
+static void	fdf_line_col(t_cood ***set, int m, int n)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < m - 1)
+	{
+		j = 0;
+		while (j < n)
+		{
+			put_line(set[i][j], set[i + 1][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+static void	fdf_line_row(t_cood ***set, int m, int n)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < m)
+	{
+		j = 0;
+		while (j < n - 1)
+		{
+			put_line(set[i][j], set[i][j + 1]);
+			j++;
+		}
+		i++;
 	}
 }

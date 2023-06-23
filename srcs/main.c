@@ -134,7 +134,7 @@ int	main(void)
 		{
 			a[i][j].x = 15 * i;
 			a[i][j].y = 25 * j;
-			a[i][j].z = 0;;
+			a[i][j].z = 0;
 			a[i][j].c = color_iofn(0x00FF0000, 0x0000FFFF, i * 30 + j , 600);
 			j++;
 		}

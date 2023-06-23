@@ -45,4 +45,36 @@ int	fdf_parse(int fd)
 	return (0);
 }
 
-t_cood	***lstconv
+t_cood	***lstconv_cood(t_list *cood_list)
+{
+	
+}
+
+int	check_a(int fd)
+{
+	char	*read;
+	char	**split;
+	t_list	*cood;
+	int		check;
+
+	cood = NULL;
+	while (1)
+	{
+		read = get_next_line(fd);
+		if (read == NULL)
+			return (NULL);
+		split = fdf_split(read);
+		if (split == NULL)
+			return (NULL);
+		check = ft_splitlen(split);
+		if (ft_splitlen(cood->content) != check)
+		{
+			perror();
+			free();
+			return (NULL);
+			}
+
+		
+		
+	}
+}
