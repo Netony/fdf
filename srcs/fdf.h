@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:47 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 13:51:48 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/26 18:59:14 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <math.h>
 # include <fcntl.h>
 
-typedef struct	s_mlx
+typedef struct	s_vars
 {
 	void	*mlx;
 	void	*win;
-}	t_mlx;
+}	t_vars;
 
 typedef struct	s_cood
 {
@@ -58,12 +58,15 @@ int		larger(int x, int y);
 int		iofn(int a, int b, int i, int n);
 int		abs(int n);
 
-void	fdf_putmap(t_mlx *mlx, t_cood ***set, int row, int col);
+void	fdf_putmap(t_vars *vars, t_cood ***set, int row, int col);
 
 t_cood	***list_to_cood(t_cood ***dst, t_list *lst, int row, int col);
-void	ft_sptfree(void *ptr);
+void	ft_sptndel(char **split, int n);
+void	ft_sptdel(char **split);
 int		ft_sptsize(char **split);
 
-t_cood	***cood_set_new(int row, int col);
+void	cood_setdel(t_cood ***set, int row, int col, int ccol);
+void	cood_rowdel(t_cood **row, int col);
+t_cood	***cood_setnew(int row, int col);
 
 #endif
