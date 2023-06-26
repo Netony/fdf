@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:23:03 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/20 22:17:59 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/26 13:51:47 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,85 @@ int	*color_to_trgb(int color)
 	return (trgb);
 }
 
-int	color_iofn(int a, int b, int i, int n)
+int	highlight(int color, int intense)
 {
-	int	*a_trgb;
-	int	*b_trgb;
-	int	ret_trgb[4];
-	int	color;
-	int	j;
-	
-	a_trgb = color_to_trgb(a);
-	b_trgb = color_to_trgb(b);
-	j = 0;
-	while (j < 4)
-	{
-		ret_trgb[j] = a_trgb[j] + (b_trgb[j] - a_trgb[j]) * i / n;
-		j++;
-	}
-	free(a_trgb);
-	free(b_trgb);
-	color = trgb_to_color(ret_trgb);
-	return (color);
+	return (color_iofn(0x00000000, color, intense, 100));
 }
+
+int	ft_sptsize(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	return (i);
+}
+
+void	ft_sptfree(void *ptr)
+{
+	int		i;
+	char	**split;
+
+	split = (char **)ptr;
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+}
+
+t_cood	***list_to_cood(t_cood ***dst, t_list *lst, int row, int col)
+{
+	int		i;
+	int		j;
+	char	**split;
+	int		z;
+
+	i = 0;
+	while (i < row)
+	{
+		split = lst->content;
+		j = 0;
+		while (j < col)
+		{
+			z = ft_atoi(split[j]);
+			dst[i][j] = cood_new(i * 10, j * 10, z, highlight(0x00FF0000, z));
+			j++;
+		}
+		lst = lst->next;
+		i++;
+	}
+	ft_lstclear(dst, ft_sptfree);
+	return (dst);
+}
+
+t_cood	***cood_set_new(int row, int col)
+{
+	t_cood	***set;
+	int		i;
+
+	set = (t_cood ***)malloc(sizeof(t_cood **) * row);
+	if (set == NULL)
+		return (NULL);
+	i = 0;
+	while (i < row)
+	{
+		set[i] = (t_cood **)malloc(sizeof(t_cood *) * col);
+		if (set[i] == NULL)
+			cood_set_del(set, i);
+		i++;
+	}
+	return (set);
+}
+
+void	cood_set_del(t_cood ***set, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+		free(set[i++]);
+	free(set);
+}
+
+void	

@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 19:19:27 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/20 22:18:00 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/26 13:05:32 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,43 @@ int	main(int argc, char **argv)
 
 int	main(void)
 {
-	void	*mlx;
-	void	*win;
-	t_cood	***matrix;
+	t_mlx	fdf;
+	t_cood	***a;
 	int		i;
 	int		j;
 
-	a = (t_cood ***)malloc(sizeof(t_cood **) * m);
+	a = (t_cood ***)malloc(sizeof(t_cood **) * 20);
+	i = 0;
+	while (i < 20)
+	{
+		j = 0;
+		a[i] = (t_cood **)malloc(sizeof(t_cood *) * 30);
+		while (j < 30)
+		{
+			a[i][j] = (t_cood *)malloc(sizeof(t_cood));
+			a[i][j]->x = iofn(200, 900, j, 20);
+			a[i][j]->y = iofn(300, 600, i, 30);
+			a[i][j]->z = 0;
+			a[i][j]->c = color_iofn(0x00FF0000, 0x0000FFFF, i * 30 + j , 600);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	fdf.mlx = mlx_init();
+	fdf.win = mlx_new_window(fdf.mlx, 1000, 1000, "TEST");
+	fdf_putmap(&fdf, a, 20, 30);
+	mlx_loop(fdf.mlx);
+	return (0);
+}
+/*
 	if (a == NULL)
 		return (NULL);
 	i = 0;
 	while (i < m)
 	{
 		j = 0;
-		a[i] = (t_cood **)mallo(sizeof(t_cood *) * n);
+		a[i] = (t_cood **)malloc(sizeof(t_cood *) * n);
 		if (a[i] == NULL)
 		{
 			ft_tp_free(a, i, j)
@@ -126,34 +149,4 @@ int	main(void)
 		i++;
 	}
 	
-	i = 0;
-	while (i < 20)
-	{
-		j = 0;
-		while (j < 30)
-		{
-			a[i][j].x = 15 * i;
-			a[i][j].y = 25 * j;
-			a[i][j].z = 0;
-			a[i][j].c = color_iofn(0x00FF0000, 0x0000FFFF, i * 30 + j , 600);
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 1000, 1000, "TEST");
-	while (i < 20)
-	{
-		j = 0;
-		while (j < 30)
-		{
-			put_cood(mlx, win, &a[i][j]);
-			j++;
-		}
-		i++;
-	}
-	// put_line(mlx, win, &a, &b);
-	mlx_loop(mlx);
-	return (0);
-}
+	*/

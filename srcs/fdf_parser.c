@@ -1,9 +1,39 @@
 #include "fdf.h"
 
 int		fdf_parse_check(char **buf, t_list *cood_last);
-int		ft_split_free(char **split);
-t_cood	***lstconv_cood(t_list *cood_list);
 
+t_cood	***fdf_parse(int fd)
+{
+	int		i;
+	int		j;
+	char	*buf;
+	char	**split;
+	t_list	*lst;
+	t_list	*new;
+	int		row;
+	int		col;
+	t_cood	***parse;
+
+	lst = NULL;
+	i = 0;
+	while (1)
+	{
+		buf = get_next_line(fd);
+		if (buf)
+		{
+			split = ft_split(buf, ' ');
+			new = ft_lstnew(split);
+			lst = ft_lstadd_back(new);
+		}
+		else
+			break ;
+	}
+	row = ft_lstsize(lst);
+	col = ft_sptsize(lst->content);
+	parse = 
+}
+
+/*
 int	fdf_parse(int fd)
 {
 	char	*buf;
@@ -78,3 +108,4 @@ int	check_a(int fd)
 		
 	}
 }
+*/

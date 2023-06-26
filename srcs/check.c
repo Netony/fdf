@@ -52,3 +52,5 @@ int	get_hexa_large(char *s)
 {
 	return(ft_atoi_base(*s, "0123456789ABCDEF"));
 }
+
+int	get_
