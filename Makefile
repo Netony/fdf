@@ -6,12 +6,13 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/06/26 18:45:28 by dajeon           ###   ########.fr        #
+#    Updated: 2023/06/27 20:20:57 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
+SOURCES = hook.c
 #SOURCES = fdf_mlx.c fdf_math.c fdf_utils.c fdf_putmap.c fdf_coordinate.c \
 		  iofn.c free.c# fdf_parser.c 
 SOURCES_MANDA = main.c

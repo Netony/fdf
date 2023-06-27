@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:47 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 18:59:14 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/27 20:19:03 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct	s_cood
 	int	z;
 	int	c;
 }	t_cood;
+
+int	hook_close(t_vars *vars);
 
 int		trgb_to_color(int *trgb);
 int		*color_to_trgb(int color);
