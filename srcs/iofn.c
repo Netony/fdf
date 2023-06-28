@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:44:38 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 12:58:48 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:03:36 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int	color_iofn(int a, int b, int i, int n)
 	return (color);
 }
 
-t_cood	*cood_iofn(t_cood *a, t_cood *b, int i, int n)
+t_dot	*ft_dot_iofn(t_dot *a, t_dot *b, int i, int n)
 {
-	t_cood	*cood;
+	t_dot	*dot;
 
-	cood = (t_cood *)malloc(sizeof(t_cood));
-	cood->x = iofn(a->x, b->x, i, n);
-	cood->y = iofn(a->y, b->y, i, n);
-	cood->z = iofn(a->z, b->z, i, n);
-	cood->c = color_iofn(a->c, b->c, i, n);
-	return (cood);
+	dot = (t_dot *)malloc(sizeof(t_dot));
+	dot->x = iofn(a->x, b->x, i, n);
+	dot->y = iofn(a->y, b->y, i, n);
+	dot->z = iofn(a->z, b->z, i, n);
+	dot->c = color_iofn(a->c, b->c, i, n);
+	return (dot);
 }

@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:47 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/27 20:19:03 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:34:37 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,50 +25,58 @@ typedef struct	s_vars
 	void	*win;
 }	t_vars;
 
-typedef struct	s_cood
+typedef struct	s_dot
 {
-	int	x;
-	int	y;
-	int	z;
-	int	c;
-}	t_cood;
+	int	**mx;
+	int	color;
+}	t_dot;
 
-int	hook_close(t_vars *vars);
+// ARRAY(INT *)
+int		*ft_arrnew(int n, ...);
+int		**ft_atom(int *arr);
 
+// HOOK
+int		hook_close(t_vars *vars);
+
+// COLOR
 int		trgb_to_color(int *trgb);
 int		*color_to_trgb(int color);
 int		color_iofn(int a, int b, int i, int n);
 
-t_cood	*cood_new(int x, int y, int z, int color);
-t_cood	*cood_iofn(t_cood *a, t_cood *b, int i, int n);
+// DOT
+t_dot	*ft_dotnew(int x, int y, int z, int height);
+void	ft_dotdel(t_dot *dot);
+t_dot	*ft_dot_iofn(t_dot *a, t_dot *b, int i, int n);
 
-int		**cood_to_matrix(t_cood *cood);
 
-void	mlx_put_cood(void *mlx_ptr, void *win_ptr, t_cood *cood);
-void	mlx_put_line(void *mlx_ptr, void *win_ptr, t_cood *a, t_cood *b);
+// MATRIX(INT **)
+int		**ft_mxnew(int *nbrs, int row, int col);
+void	ft_mxdel(int **matrix, int row);
+int		**ft_mxmul(int **a, int **b, int *sizes);
 
-int		**matrix_new(int *a, int x_size, int y_size);
-void	matrix_del(int **a, int x_size);
-int		**matrix_times(int **a, int **b, int *sizes);
-int		*matrix_make_sizes(int a_row, int a_col, int b_row, int b_col);
-
+// MATH
 int		abs(int n);
-
-int		print_matrix(int **a, int x_size, int y_size);
-
 int		larger(int x, int y);
 int		iofn(int a, int b, int i, int n);
-int		abs(int n);
 
-void	fdf_putmap(t_vars *vars, t_cood ***set, int row, int col);
+// TEST
+int		ft_putmx(int **mx, int row, int col);
+int		ft_putarr(int *arr, int n);
 
-t_cood	***list_to_cood(t_cood ***dst, t_list *lst, int row, int col);
+// FDF
+void	fdf_putmap(t_vars *vars, t_dot ***set, int row, int col);
+void	mlx_put_dot(void *mlx_ptr, void *win_ptr, t_dot *dot);
+void	mlx_put_line(void *mlx_ptr, void *win_ptr, t_dot *a, t_dot *b);
+
+// SPLIT(CHAR **) ...
+t_dot	***list_to_dot(t_dot ***dst, t_list *lst, int row, int col);
 void	ft_sptndel(char **split, int n);
 void	ft_sptdel(char **split);
 int		ft_sptsize(char **split);
 
-void	cood_setdel(t_cood ***set, int row, int col, int ccol);
-void	cood_rowdel(t_cood **row, int col);
-t_cood	***cood_setnew(int row, int col);
+// SET(T_DOT ***) ...
+void	dot_setdel(t_dot ***set, int row, int col, int ccol);
+void	dot_rowdel(t_dot **row, int col);
+t_dot	***dot_setnew(int row, int col);
 
 #endif

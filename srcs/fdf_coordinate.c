@@ -6,13 +6,13 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 20:51:29 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 18:45:15 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/28 20:59:52 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_cood	*ft_codnew(int x, int y, int z, int height)
+t_vert	*ft_vrtnew(int x, int y, int z, int height)
 {
 	t_cood	*new;
 
@@ -22,11 +22,11 @@ t_cood	*ft_codnew(int x, int y, int z, int height)
 	new->x = x;
 	new->y = y;
 	new->z = z;
-	new->c = highlight(0x00ff0000, height;
+	new->c = highlight(0x00ff0000, height);
 	return (new);
 }
 
-int	**cood_to_matrix(t_cood *cood)
+t_vert	**ft_vtom(t_cood *cood)
 {
 	int	**matrix;
 

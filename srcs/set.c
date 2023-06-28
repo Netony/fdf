@@ -6,13 +6,13 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:19:24 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 18:41:12 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:22:49 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	cood_setdel(t_cood ***set, int row, int col)
+void	dot_setdel(t_dot ***set, int row, int col)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ void	cood_setdel(t_cood ***set, int row, int col)
 	free(set);
 }
 
-void	cood_rowdel(t_cood **row, int col)
+void	dot_rowdel(t_dot **row, int col)
 {
 	int	j;
 
@@ -32,19 +32,19 @@ void	cood_rowdel(t_cood **row, int col)
 	free(row);
 }
 
-t_cood	***cood_setnew(int row, int col)
+t_dot	***dot_setnew(int row, int col)
 {
-	t_cood	***set;
+	t_dot	***set;
 	int		i;
 	int		j;
 
-	set = (t_cood ***)malloc(sizeof(t_cood **) * row);
+	set = (t_dot ***)malloc(sizeof(t_dot **) * row);
 	if (set == NULL)
 		return (NULL);
 	i = 0;
 	while (i < row)
 	{
-		set[i] = (t_cood **)malloc(sizeof(t_cood *) * col);
+		set[i] = (t_dot **)malloc(sizeof(t_dot *) * col);
 		if (set[i] == NULL)
 		{
 			ft_setdel(set, row, i);
@@ -60,14 +60,14 @@ t_cood	***cood_setnew(int row, int col)
 	return (set);
 }
 
-t_cood	**ft_ltor(t_list *node, int i, int col)
+t_dot	**ft_ltor(t_list *node, int i, int col)
 {
-	t_cood	**row;
+	t_dot	**row;
 	char	**spt;
 	int		z;
 	int		j;
 
-	row = (t_cood **)malloc(sizeof(t_cood *) * col);
+	row = (t_dot **)malloc(sizeof(t_dot *) * col);
 	if (row == NULL)
 		return (NULL);
 	spt = (char **)(node->content);
@@ -77,20 +77,20 @@ t_cood	**ft_ltor(t_list *node, int i, int col)
 		z = ft_atoi(spt[i]);
 		row[j] = ft_codnew(j, i, z, z);
 		if (row[i] == NULL)
-			cood_rowdel(row, col);
+			dot_rowdel(row, col);
 		i++;
 	}
 	return 
 
 }
 
-t_cood	***cod_ltos(t_list *lst, int row, int col)
+t_dot	***cod_ltos(t_list *lst, int row, int col)
 {
-	t_cood	***ltos;
+	t_dot	***ltos;
 	int		i;
 	int		j;
 
-	ltos = cood_setnew(row, col);
+	ltos = dot_setnew(row, col);
 	if (ltos == NULL)
 		return (NULL);
 	i = 0;
@@ -100,7 +100,7 @@ t_cood	***cod_ltos(t_list *lst, int row, int col)
 		while (j < col)
 		{
 			z = ft_atoi((lst->content)[j]);
-			ltos[i][j] = cood_new(i, j, z, highlight(0x00FF0000, z));
+			ltos[i][j] = dot_new(i, j, z, highlight(0x00FF0000, z));
 			if (ltos[i][j] == NULL)
 			{
 				

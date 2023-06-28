@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf_coordinate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 19:19:27 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 21:34:37 by dajeon           ###   ########.fr       */
+/*   Created: 2023/06/20 20:51:29 by dajeon            #+#    #+#             */
+/*   Updated: 2023/06/28 21:19:46 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	fdf_hook(t_vars	*vars);
-
-int	main(void)
+t_dot	*ft_dotnew(int x, int y, int z, int height)
 {
-	t_vars	vars;
+	t_dot	*new;
 	int		*arr;
 	int		**mx;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1200, 800, "TEST");
-	arr = ft_arrnew(5, 1, 2, 3, 5, 6);
-	ft_putarr(arr, 5);
+	new = (t_dot *)malloc(sizeof(t_dot));
+	if (new == NULL)
+		return (NULL);
+	arr = ft_arrnew(3, x, y, z);
+	if (arr == NULL)
+		return (NULL);
 	mx = ft_atom(arr);
-	ft_putmx(mx, 1, 5);
-	fdf_hook(&vars);
-	mlx_loop(vars.mlx);
-	return (0);
+	if (mx == NULL)
+	{
+		free(new);
+		new == NULL;
+	}
+	else
+	{
+		new->mx = mx;
+		new->color = highlight(0x00ff0000, height);
+	}
+	free(arr);
+	return (new);
 }
 
-int	fdf_hook(t_vars	*vars)
+void	ft_dotdel(t_dot *dot)
 {
-	hook_close(vars);
-	//hook_rotate(vars);
-	return (0);
+	free(dot->mx);
+	free(dot);
 }

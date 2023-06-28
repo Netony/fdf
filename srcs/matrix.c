@@ -6,40 +6,40 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:04:41 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 12:15:09 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:17:02 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	**matrix_new(int *nbrs, int x_size, int y_size)
+int	**ft_mxnew(int *nbrs, int row, int col)
 {
 	int	**matrix;
 	int	i;
 	int	j;
 
-	matrix = (int **)malloc(sizeof(int *) * x_size);
+	matrix = (int **)malloc(sizeof(int *) * row);
 	i = 0;
-	while (i < x_size)
+	while (i < row)
 	{
-		matrix[i] = (int *)malloc(sizeof(int) * y_size);
+		matrix[i] = (int *)malloc(sizeof(int) * col);
 		j = 0;
-		while (j < y_size)
+		while (j < col)
 			matrix[i][j++] = *(a++);
 		i++;
 	}
 	return (matrix);
 }
 
-void	matrix_del(int **matrix, int x_size)
+void	ft_mxdel(int **matrix, int row)
 {
 	int	i;
 
 	i = 0;
-	while (i < x_size)
+	while (i < row)
 		free(matrix[i++]);
 	free(matrix);
 }
 
-int	**matrix_times(int **a, int **b, int *sizes);
+int	**ft_mxmul(int **a, int **b, int *sizes);
 {
 	int	i;
 	int	j;
@@ -65,18 +65,4 @@ int	**matrix_times(int **a, int **b, int *sizes);
 		i++;
 	}
 	return (ret);
-}
-
-int	*matrix_make_sizes(int a_row, int a_col, int b_row, int b_col)
-{
-	int	*size;
-
-	size = (int *)malloc(sizeof(int) * 4);
-	if (size == NULL)
-		return (NULL);
-	size[0] = a_row;
-	size[1] = a_col;
-	size[2] = b_row;
-	size[3] = b_col;
-	return (size);
 }
