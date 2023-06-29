@@ -6,19 +6,20 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:47 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/29 08:40:43 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:38:10 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include "../libft/incs/libft.h"
-// # include <mlx.h> // 42
-# include "../mlx/mlx.h" // local
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+
+// # include "../mlx/mlx.h" // local
+# include <mlx.h> // 42
 
 typedef struct	s_vars
 {
@@ -28,13 +29,14 @@ typedef struct	s_vars
 
 typedef struct	s_dot
 {
-	int	**mx;
-	int	color;
+	double	**mx;
+	int		color;
 }	t_dot;
 
 // ARRAY(INT *)
+double	**ft_atom(double *arr, int size);
+double	*ft_arrnew_db(int n, ...);
 int		*ft_arrnew(int n, ...);
-int		**ft_atom(int *arr);
 
 // HOOK
 int		hook_close(t_vars *vars);
@@ -46,7 +48,8 @@ int		color_iofn(int a, int b, int i, int n);
 int		color_height(int z);
 
 // DOT
-t_dot	*ft_dotnew(int x, int y, int z, int height);
+
+t_dot	*ft_dotnew(double x, double y, double z, int height);
 void	ft_dotdel(t_dot *dot);
 t_dot	*ft_dot_iofn(t_dot *a, t_dot *b, int i, int n);
 
@@ -56,8 +59,9 @@ int		larger(int x, int y);
 int		iofn(int a, int b, int i, int n);
 
 // TEST
-int		ft_putmx(int **mx, int row, int col);
+int		ft_putmx(double **mx, int row, int col);
 int		ft_putarr(int *arr, int n);
+int		ft_putarr_db(double *arr, int n);
 
 // FDF
 void	fdf_putmap(t_vars *vars, t_dot ***set, int row, int col);

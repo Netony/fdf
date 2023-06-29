@@ -6,14 +6,14 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:08:38 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 21:34:35 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:41:03 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fdf.h"
 
-int	ft_putmx(int **mx, int row, int col)
+int	ft_putmx(double **mx, int row, int col)
 {
 	int	i;
 	int	j;
@@ -23,13 +23,22 @@ int	ft_putmx(int **mx, int row, int col)
 	{
 		j = 0;
 		while (j < col)
-		{
-			ft_putnbr_fd(mx[i][j++], 1);
-			ft_putstr_fd(" ", 1);
-		}
-		ft_putendl_fd("", 1);
+			printf("%.2f ", mx[i][j++]);
+		printf("\n");
 		i++;
 	}
+	printf("\n");
+	return (0);
+}
+
+int	ft_putarr_db(double *arr, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+		printf("%f\n", arr[i]);
+	ft_putendl_fd("", 1);
 	return (0);
 }
 
@@ -39,10 +48,7 @@ int	ft_putarr(int *arr, int n)
 
 	i = 0;
 	while (i < n)
-	{
-		ft_putnbr_fd(arr[i++], 1);
-		ft_putstr_fd(" ", 1);
-	}
+		printf("%d\n", arr[i]);
 	ft_putendl_fd("", 1);
 	return (0);
 }

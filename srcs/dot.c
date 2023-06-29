@@ -6,25 +6,25 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 20:51:29 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/29 08:11:50 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:37:05 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_dot	*ft_dotnew(int x, int y, int z, int height)
+t_dot	*ft_dotnew(double x, double y, double z, int height)
 {
 	t_dot	*new;
-	int		*arr;
-	int		**mx;
+	double	*arr;
+	double	**mx;
 
 	new = (t_dot *)malloc(sizeof(t_dot));
 	if (new == NULL)
 		return (NULL);
-	arr = ft_arrnew(3, x, y, z);
+	arr = ft_arrnew_db(3, x, y, z);
 	if (arr == NULL)
 		return (NULL);
-	mx = ft_atom(arr);
+	mx = ft_atom(arr, 3);
 	if (mx == NULL)
 	{
 		free(new);
