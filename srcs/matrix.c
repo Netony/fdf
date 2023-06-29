@@ -6,9 +6,13 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:04:41 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 21:17:02 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 08:39:57 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
+#include "../libft/incs/libft.h"
+#include "matrix.h"
 
 int	**ft_mxnew(int *nbrs, int row, int col)
 {
@@ -17,16 +21,36 @@ int	**ft_mxnew(int *nbrs, int row, int col)
 	int	j;
 
 	matrix = (int **)malloc(sizeof(int *) * row);
+	if (matrix == NULL)
+		return (NULL);
 	i = 0;
 	while (i < row)
 	{
 		matrix[i] = (int *)malloc(sizeof(int) * col);
+		if (matrix[i] == NULL)
+		{
+			ft_mxdel(matrix, i);
+			return (NULL);
+		}
 		j = 0;
 		while (j < col)
-			matrix[i][j++] = *(a++);
+			matrix[i][j++] = *(nbrs++);
 		i++;
 	}
 	return (matrix);
+}
+
+int	**ft_mxzero(int row, int col)
+{
+	int	*zeros;
+	int	**mx;
+
+	zeros = (int *)ft_calloc(row * col, sizeof(int));
+	if (zeros == NULL)
+		return (NULL);
+	mx = ft_mxnew(zeros, row, col);
+	free(zeros);
+	return (mx);
 }
 
 void	ft_mxdel(int **matrix, int row)
@@ -39,18 +63,20 @@ void	ft_mxdel(int **matrix, int row)
 	free(matrix);
 }
 
-int	**ft_mxmul(int **a, int **b, int *sizes);
+int	**ft_mxmul(int **a, int **b, int *sizes)
 {
 	int	i;
 	int	j;
 	int	k;
+	int	temp;
 	int	**ret;
 
-	ret = (int **)malloc(sizeof(int *) * a_size[0]);
+	ret = ft_mxzero(sizes[0], sizes[3]);
+	if (ret == NULL)
+		return (NULL);
 	i = 0;
 	while (i < sizes[0])
 	{
-		ret[i] = (int *)malloc(sizeof(int) * b_size[1]);
 		j = 0;
 		while (j < sizes[3])
 		{

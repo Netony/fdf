@@ -6,12 +6,13 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:54:19 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 21:33:52 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 08:38:43 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdlib.h>
+#include "matrix.h"
 
 int	*ft_arrnew(int n, ...)
 {
@@ -30,13 +31,12 @@ int	*ft_arrnew(int n, ...)
 	return (arr);
 }
 
-int	**ft_atom(int *arr)
+int	**ft_atom(int *arr, int size)
 {
 	int	**mx;
 
-	mx = (int **)malloc(sizeof(int *) * 1);
+	mx = ft_mxnew(arr, size, 1);
 	if (mx == NULL)
 		return (NULL);
-	mx[0] = arr;
 	return (mx);
 }

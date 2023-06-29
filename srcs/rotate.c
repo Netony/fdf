@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 20:26:51 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 20:32:02 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 09:24:51 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	fdf_rotate(t_cood ***set, int x, int y)
+void	fdf_rotate(t_dot ***set, double al, double be, double ga)
 {
 	
 }

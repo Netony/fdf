@@ -6,14 +6,15 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:47 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 21:34:37 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 08:40:43 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include "../libft/incs/libft.h"
-# include <mlx.h>
+// # include <mlx.h> // 42
+# include "../mlx/mlx.h" // local
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
@@ -42,17 +43,12 @@ int		hook_close(t_vars *vars);
 int		trgb_to_color(int *trgb);
 int		*color_to_trgb(int color);
 int		color_iofn(int a, int b, int i, int n);
+int		color_height(int z);
 
 // DOT
 t_dot	*ft_dotnew(int x, int y, int z, int height);
 void	ft_dotdel(t_dot *dot);
 t_dot	*ft_dot_iofn(t_dot *a, t_dot *b, int i, int n);
-
-
-// MATRIX(INT **)
-int		**ft_mxnew(int *nbrs, int row, int col);
-void	ft_mxdel(int **matrix, int row);
-int		**ft_mxmul(int **a, int **b, int *sizes);
 
 // MATH
 int		abs(int n);

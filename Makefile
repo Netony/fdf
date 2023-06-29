@@ -6,13 +6,13 @@
 #    By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 09:00:32 by dajeon            #+#    #+#              #
-#    Updated: 2023/06/28 21:29:40 by dajeon           ###   ########.fr        #
+#    Updated: 2023/06/29 08:15:03 by dajeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SOURCES = hook.c array.c print.c
+SOURCES = dot.c matrix.c hook.c array.c print.c color.c iofn.c
 #SOURCES = fdf_mlx.c fdf_math.c fdf_utils.c fdf_putmap.c fdf_coordinate.c \
 		  iofn.c free.c# fdf_parser.c 
 SOURCES_MANDA = main.c
@@ -55,7 +55,7 @@ AR = ar
 RM = rm
 
 CFLAGS = -Wall -Wextra -Werror
-LIBFLAGS = -lm -lmlx -framework OpenGl -framework AppKit -l$(LIB) -L$(LIB_DIR)
+LIBFLAGS = -lm -L. -lmlx -framework OpenGl -framework AppKit -l$(LIB) -L$(LIB_DIR)
 ARFLAGS = crus
 RMFLAGS = -rf
 

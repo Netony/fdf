@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_coordinate.c                                   :+:      :+:    :+:   */
+/*   dot.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 20:51:29 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 21:19:46 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 08:11:50 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_dot	*ft_dotnew(int x, int y, int z, int height)
 	if (mx == NULL)
 	{
 		free(new);
-		new == NULL;
+		new = NULL;
 	}
 	else
 	{
 		new->mx = mx;
-		new->color = highlight(0x00ff0000, height);
+		new->color = color_height(height);
 	}
 	free(arr);
 	return (new);

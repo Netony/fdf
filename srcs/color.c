@@ -6,11 +6,14 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:05:44 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 18:45:11 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 08:16:10 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int	highlight(int color, int height);
+static int	lowlight(int color, int height);
 
 int	trgb_to_color(int *trgb)
 {
@@ -38,7 +41,7 @@ int	*color_to_trgb(int color)
 	return (trgb);
 }
 
-int	color(int z)
+int	color_height(int z)
 {
 	int	color;
 

@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:44:38 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/28 21:03:36 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 08:15:26 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	color_iofn(int a, int b, int i, int n)
 	return (color);
 }
 
+/*
 t_dot	*ft_dot_iofn(t_dot *a, t_dot *b, int i, int n)
 {
 	t_dot	*dot;
@@ -53,3 +54,4 @@ t_dot	*ft_dot_iofn(t_dot *a, t_dot *b, int i, int n)
 	dot->c = color_iofn(a->c, b->c, i, n);
 	return (dot);
 }
+*/
