@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:04:41 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/29 11:57:08 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/29 13:24:55 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../libft/incs/libft.h"
 #include "matrix.h"
 
-double	**ft_mxnew(double *nbrs, int row, int col)
+double	**ft_mxnew(const double *nbrs, int row, int col)
 {
 	double	**matrix;
 	int	i;
@@ -63,7 +63,7 @@ void	ft_mxdel(double **matrix, int row)
 	free(matrix);
 }
 
-double	**ft_mxmul(double **a, double **b, int *sizes)
+double	**ft_mxmul(const double **a, const double **b, int *sizes)
 {
 	int	i;
 	int	j;
