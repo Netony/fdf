@@ -14,5 +14,5 @@
 
 int	ft_isin(int a, char const *b)
 {
-	return (ft_strchr(b, a) > 0);
+	return ((long)(ft_strchr(b, a)));
 }

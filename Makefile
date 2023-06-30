@@ -56,7 +56,8 @@ RM = rm
 
 CFLAGS = #-Wall -Wextra -Werror
 # LIBFLAGS = -lm -L. -lmlx -framework OpenGl -framework AppKit -l$(LIB) -L$(LIB_DIR)
-LIBFLAGS = -lm -lmlx -framework OpenGl -framework AppKit -l$(LIB) -L$(LIB_DIR)
+# LIBFLAGS = -lm -lmlx -framework OpenGl -framework AppKit -l$(LIB) -L$(LIB_DIR)
+LIBFLAGS = -l$(LIB) -L$(LIB_DIR)
 
 ARFLAGS = crus
 RMFLAGS = -rf
