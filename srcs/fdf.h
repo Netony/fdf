@@ -6,7 +6,7 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:47 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/29 13:48:35 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/06/30 14:35:22 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
-# include "../mlx/mlx.h"// local
-// # include <mlx.h>// 42
+// # include "../mlx/mlx.h"// local
+# include <mlx.h>// 42
 
 typedef struct s_vars
 {
