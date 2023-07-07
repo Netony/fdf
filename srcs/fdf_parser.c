@@ -4,16 +4,7 @@ int		fdf_parse_check(char **buf, t_list *cood_last);
 
 t_cood	***fdf_parse(int fd)
 {
-	int		i;
-	int		j;
-	char	*buf;
-	char	**split;
-	t_list	*lst;
-	t_list	*new;
-	int		row;
-	int		col;
-	t_cood	***parse;
-
+	
 	lst = NULL;
 	i = 0;
 	while (1)
@@ -31,6 +22,50 @@ t_cood	***fdf_parse(int fd)
 	row = ft_lstsize(lst);
 	col = ft_sptsize(lst->content);
 	parse = 
+}
+
+int	
+
+int	fdf_parse_size_check(char **split, t_list *cur)
+{
+	int	len1;
+	int	len2;
+
+	len1 = ft_sptlen(cur->content);
+	len2 = ft_sptlen(split);
+	if (len1 == len2)
+
+}
+
+t_dot	*fdf_parse_format_check(char *format)
+{
+	int	i;
+	int	chk;
+
+	i = 0;
+	chk = ft_chknset(&format[i], "0123456789", 1, -1);
+	if (chk)
+		i += chk;
+	else
+		return (0);
+	chk = ft_chknset(&format[i], ",", 1, 1);
+	if (chk)
+	{
+		chk = ft_chknstr(&format[i], "0x");
+		if (chk)
+		{
+			i += chk;
+			chk = ft_chknset(&format[i], "0123456789abcdef"); 
+			if (!chk)
+				chk = ft_chkset(&format[i], "0123456789ABCDEF");
+			if (chk)
+				i += chk;
+			else
+				return (0);
+		}
+	}
+	chk = format[i] == 
+	if (ft_
 }
 
 /*

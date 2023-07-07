@@ -6,11 +6,11 @@
 /*   By: dajeon <dajeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:12:53 by dajeon            #+#    #+#             */
-/*   Updated: 2023/06/26 17:12:59 by dajeon           ###   ########.fr       */
+/*   Updated: 2023/07/03 11:22:57 by dajeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_sptndel(char **split, int n)
+void	ft_spterr(char **split, int n)
 {
 	int	i;
 
